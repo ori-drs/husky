@@ -96,7 +96,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
    <!-- Multisense -->
     <joint name="head_joint" type="fixed">
-      <origin xyz="0.315 0.0 0.593"/>
+      <!-- same as real robot in feb 2018: 31degrees-->
+      <origin xyz="0.465 0.000 0.558" rpy="0.0 0.5411 0.0" />
       <parent link="base_link" />
 <!--      <parent link="ptu_mount_link" /> -->
       <child link="head_root" />
