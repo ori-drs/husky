@@ -1,0 +1,29 @@
+<launch>
+
+  <arg name="robot_namespace" default="/"/>
+
+  <arg name="laser_enabled" default="$(optenv HUSKY_LMS1XX_ENABLED false)"/>
+  <arg name="kinect_enabled" default="$(optenv HUSKY_UR5_ENABLED false)"/>
+  <arg name="urdf_extras" default="$(optenv HUSKY_URDF_EXTRAS)"/>
+
+  <arg name="multisense_sim" default="false"/>
+  <arg name="multisense_real" default="true"/>
+
+
+  <include file="$(find husky_ori)/launch/description_multisense.launch" >
+    <arg name="robot_namespace" value="$(arg robot_namespace)"/>
+    <arg name="laser_enabled" default="$(arg laser_enabled)"/>
+    <arg name="kinect_enabled" default="$(arg kinect_enabled)"/>
+    <arg name="urdf_extras" default="$(arg urdf_extras)"/>
+    <arg name="multisense_sim" default="$(arg multisense_sim)"/>
+    <arg name="multisense_real" default="$(arg multisense_real)"/>    
+  </include>
+
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="rob_st_pub_multisense" >
+      <remap from="joint_states" to="/multisense/joint_states" />
+      <remap from="joint_states" to="/husky/joint_states" />
+    </node>
+
+    <node pkg="husky_ori" type="husky_cdt_wheel_angle_shim.py" name="husky_cdt_wheel_angle_shim" />
+
+</launch>

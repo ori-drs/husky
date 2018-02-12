@@ -38,6 +38,9 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <arg name="kinect_enabled" default="$(optenv HUSKY_UR5_ENABLED false)"/>
   <arg name="urdf_extras" default="$(optenv HUSKY_URDF_EXTRAS)"/>
 
+  <arg name="multisense_sim" default="false"/>
+  <arg name="multisense_real" default="false"/>
+
   <group ns="$(arg robot_namespace)">
 
     <group if="$(arg multimaster)">
@@ -46,6 +49,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <arg name="laser_enabled" default="$(arg laser_enabled)"/>
         <arg name="kinect_enabled" default="$(arg kinect_enabled)"/>
         <arg name="urdf_extras" default="$(arg urdf_extras)"/>
+        <arg name="multisense_real" default="$(arg multisense_real)"/>
+        <arg name="multisense_sim" default="$(arg multisense_sim)"/>
       </include>
         
       <include file="$(find multimaster_launch)/launch/multimaster_gazebo_robot.launch">
@@ -65,6 +70,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <arg name="laser_enabled" value="$(arg laser_enabled)"/>
         <arg name="kinect_enabled" value="$(arg kinect_enabled)"/>
         <arg name="urdf_extras" value="$(arg urdf_extras)"/>
+        <arg name="multisense_real" default="$(arg multisense_real)"/>
+        <arg name="multisense_sim" default="$(arg multisense_sim)"/>
       </include>
     </group>
 
