@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+
+  <!-- Namespace of the node -->
+  <arg name="namespace"                    default="point_cloud_filter"/>
+  <!-- Input topic -->
+  <arg name="input_topic"                  default="point_cloud"/>
+  <!-- Output topic -->
+  <arg name="output_topic"                 default="point_cloud_filtered"/>
+  <!-- ID of the robot frame -->
+  <arg name="robot_frame_id"               default="base"/>
+  <!-- Path to the crop box config file -->
+  <arg name="crop_box_config_file"         value="$(find husky_ori)/config/husky_crop_box.yaml"/>
+  <!-- Path to the custom crop box config file -->
+  <arg name="crop_box_config_file_overlay" default="$(arg crop_box_config_file)"/>
+
+  <!-- Point cloud filter nodelet manager -->
+  <node ns="$(arg namespace)" name="nodelet_manager" pkg="nodelet" type="nodelet" args="manager" output="screen"/>
+
+  <!-- Crop box filter -->
+  <node ns="$(arg namespace)" name="crop_box" pkg="nodelet" type="nodelet" args="load pcl/CropBox nodelet_manager" output="screen" respawn="true">
+    <param name="input_frame"  value="$(arg robot_frame_id)"/>
+    <param name="output_frame" value="$(arg robot_frame_id)"/>
+    <rosparam command="load"   file="$(arg crop_box_config_file)"/>
+    <rosparam command="load"   file="$(arg crop_box_config_file_overlay)"/>
+    <remap from="~input"       to="$(arg input_topic)"/>
+    <remap from="~output"      to="$(arg output_topic)"/>
+  </node>
+
+</launch>
