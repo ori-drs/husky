@@ -22,7 +22,7 @@
   </include>
 
   <!-- Load robot description -->
-  <include file="$(find husky_ori)/launch/description_multisense.launch" >
+  <include file="$(find husky_drs)/launch/description_multisense.launch" >
     <arg name="laser_enabled" default="$(arg laser_enabled)"/>
     <arg name="kinect_enabled" default="$(arg kinect_enabled)"/>
     <arg name="urdf_extras" default="$(arg urdf_extras)"/>

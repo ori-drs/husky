@@ -61,7 +61,7 @@
 
   <!-- Elevation mapping -->
   <group if="$(arg run_elevation_mapping)">
-    <include file="$(find anymal_ori)/launch/elevation_mapping.launch">
+    <include file="$(find anymal_drs_config)/launch/elevation_mapping.launch">
       <arg name="sensor" value="$(arg elevation_mapping_sensor)"/>
     </include>
   </group>

@@ -41,7 +41,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <arg name="debug" value="false"/>
   </include>
 
-  <include file="$(find husky_ori)/launch/spawn_husky_multisense.launch">
+  <include file="$(find husky_drs)/launch/spawn_husky_multisense.launch">
     <arg name="laser_enabled" value="$(arg laser_enabled)"/>
     <arg name="kinect_enabled" value="$(arg kinect_enabled)"/>
   </include>

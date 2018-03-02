@@ -10,7 +10,7 @@
   <arg name="multisense_real" default="true"/>
 
 
-  <include file="$(find husky_ori)/launch/description_multisense.launch" >
+  <include file="$(find husky_drs)/launch/description_multisense.launch" >
     <arg name="robot_namespace" value="$(arg robot_namespace)"/>
     <arg name="laser_enabled" default="$(arg laser_enabled)"/>
     <arg name="kinect_enabled" default="$(arg kinect_enabled)"/>
@@ -24,6 +24,6 @@
       <remap from="joint_states" to="/husky/joint_states" />
     </node>
 
-    <node pkg="husky_ori" type="husky_cdt_wheel_angle_shim.py" name="husky_cdt_wheel_angle_shim" />
+    <node pkg="husky_drs" type="husky_cdt_wheel_angle_shim.py" name="husky_cdt_wheel_angle_shim" />
 
 </launch>

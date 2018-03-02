@@ -15,7 +15,7 @@
 
   <!-- Scan to point cloud -->
   <node ns="$(arg name)" name="scan_to_pointcloud" pkg="scan_to_pointcloud" type="scan_to_pointcloud_node">
-    <rosparam command="load"                   file="$(find husky_ori)/config/husky_scan_to_pointcloud.yaml"/>
+    <rosparam command="load"                   file="$(find husky_drs)/config/husky_scan_to_pointcloud.yaml"/>
     <param name="target_frame_id"              value="$(arg fixed_frame_id)"/>
     <param name="subscribers/scan/topic"       value="/$(arg name)/lidar_scan"/>
     <param name="publishers/point_cloud/topic" value="/$(arg name)/point_cloud_scan"/>
@@ -24,7 +24,7 @@
 
 
   <!-- Single scan filter -->
-  <include file="$(find husky_ori)/launch/husky_point_cloud_filter.launch">
+  <include file="$(find husky_drs)/launch/husky_point_cloud_filter.launch">
     <arg name="namespace"      value="/$(arg name)/point_cloud_scan_filter"/>
     <arg name="input_topic"    value="/$(arg name)/point_cloud_scan"/>
     <arg name="output_topic"   value="/$(arg name)/point_cloud_scan_filtered"/>

@@ -11,7 +11,7 @@
   <!-- ID of the robot frame -->
   <arg name="robot_frame_id"               default="base"/>
   <!-- Path to the crop box config file -->
-  <arg name="crop_box_config_file"         value="$(find husky_ori)/config/husky_crop_box.yaml"/>
+  <arg name="crop_box_config_file"         value="$(find husky_drs)/config/husky_crop_box.yaml"/>
   <!-- Path to the custom crop box config file -->
   <arg name="crop_box_config_file_overlay" default="$(arg crop_box_config_file)"/>
 
