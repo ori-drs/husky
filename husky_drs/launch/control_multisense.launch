@@ -13,6 +13,7 @@
   <arg name="urdf_extras" default="$(optenv HUSKY_URDF_EXTRAS)"/>
   <arg name="multisense_sim" default="false"/>
   <arg name="multisense_real" default="false"/>
+  <arg name="multisense_stereo" default="false"/>
 
   <include file="$(find multimaster_launch)/launch/multimaster_robot.launch">
     <arg name="gazebo_interface" value="$(find husky_control)/config/gazebo_interface.yaml" />
@@ -28,6 +29,7 @@
     <arg name="urdf_extras" default="$(arg urdf_extras)"/>
     <arg name="multisense_sim" default="$(arg multisense_sim)"/>
     <arg name="multisense_real" default="$(arg multisense_real)"/>  
+    <arg name="multisense_stereo" default="$(arg multisense_stereo)"/>  
   </include>
 
   <!-- Load controller configuration -->
