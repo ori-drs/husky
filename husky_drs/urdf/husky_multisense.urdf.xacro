@@ -39,7 +39,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <!-- real or sim - loads a different urdf  -->
   <xacro:arg name="multisense_sim" default="false" />
   <xacro:arg name="multisense_real" default="false" />
-
+  <xacro:arg name="multisense_stereo" default="false" />
 
   <!-- Included URDF/XACRO Files -->
   <xacro:include filename="$(find husky_description)/urdf/decorations.urdf.xacro" />
@@ -50,12 +50,12 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:include filename="$(find husky_description)/urdf/accessories/sensor_arch.urdf.xacro"/>
 
 
+  <!-- Multisense -->
+  <!-- same pitch as real robot in feb 2018: 31degrees-->
   <xacro:if value="$(arg multisense_sim)">
     <xacro:include filename="$(find multisense_sl)/multisense_sl_sim.urdf" />
     <multisense name="multisense"/>
 
-    <!-- Multisense -->
-    <!-- same as real robot in feb 2018: 31degrees-->
     <joint name="multisense/head_joint" type="fixed">
       <origin xyz="0.465 0.000 0.558" rpy="0.0 0.5411 0.0" />
       <parent link="base_link" />
@@ -67,8 +67,6 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <xacro:include filename="$(find multisense_description)/urdf/multisenseSL/multisenseSL.urdf.xacro" />
     <multisenseSL name="multisense" />
 
-    <!-- Multisense -->
-    <!-- same as real robot in feb 2018: 31degrees-->
     <joint name="multisense/head_joint" type="fixed">
       <origin xyz="0.465 0.000 0.558" rpy="0.0 0.28278 0.0" />
       <parent link="base_link" />
@@ -76,6 +74,16 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     </joint>
   </xacro:if>
 
+  <xacro:if value="$(arg multisense_stereo)">
+    <xacro:include filename="$(find husky_drs)/cameras/multisense/multisense_sl_sim_minimal_stereo.urdf" />
+    <multisense name="multisense"/>
+
+    <joint name="multisense/head_joint" type="fixed">
+      <origin xyz="0.465 0.000 0.558" rpy="0.0 0.5411 0.0" />
+      <parent link="base_link" />
+      <child link="multisense/head" />
+    </joint>
+  </xacro:if>
 
 
   <xacro:property name="M_PI" value="3.14159"/>

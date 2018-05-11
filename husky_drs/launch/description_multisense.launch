@@ -31,6 +31,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <arg name="urdf_extras" default="$(optenv HUSKY_URDF_EXTRAS)"/>
   <arg name="multisense_sim" default="false"/>
   <arg name="multisense_real" default="false"/>
+  <arg name="multisense_stereo" default="false"/>
 
   <param name="robot_description" command="$(find xacro)/xacro '$(find husky_drs)/urdf/husky_multisense.urdf.xacro'
     --inorder
@@ -40,6 +41,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     urdf_extras:=$(arg urdf_extras)
     multisense_sim:=$(arg multisense_sim)
     multisense_real:=$(arg multisense_real)
+    multisense_stereo:=$(arg multisense_stereo)
     " />
 
 </launch>
