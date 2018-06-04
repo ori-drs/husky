@@ -1,0 +1,6 @@
+free_thresh: 0.196
+image: or_reactor_room.pgm
+negate: 0
+occupied_thresh: 0.65
+origin: [-4.699999999999989, -11.449999999999989, 0.0]
+resolution: 0.05
