@@ -9,6 +9,10 @@
   <arg name="multisense_sim" default="false"/>
   <arg name="multisense_real" default="true"/>
 
+  <arg name="sensor"     default="SL" />
+  <arg name="launch_robot_state_publisher" default="true" />
+  <arg name="namespace"  default="multisense" />
+
 
   <include file="$(find husky_drs)/launch/description_multisense.launch" >
     <arg name="robot_namespace" value="$(arg robot_namespace)"/>
@@ -19,11 +23,20 @@
     <arg name="multisense_real" default="$(arg multisense_real)"/>    
   </include>
 
-    <node pkg="robot_state_publisher" type="robot_state_publisher" name="rob_st_pub_multisense" >
+   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_pub_multisense" >
       <remap from="joint_states" to="/multisense/joint_states" />
       <remap from="joint_states" to="/husky/joint_states" />
     </node>
 
-    <node pkg="husky_drs" type="husky_cdt_wheel_angle_shim.py" name="husky_cdt_wheel_angle_shim" />
+<!--
+  <group if = "$(arg launch_robot_state_publisher)">
+    <param name="robot_description"
+          command="$(find xacro)/xacro.py '$(find multisense_description)/urdf/multisense$(arg sensor)/standalone.urdf.xacro' name:=$(arg namespace)"/>
+    <node pkg="robot_state_publisher" type="state_publisher" name="$(arg namespace)_state_publisher">
+      <param name="publish_frequency" type="double" value="50.0" />
+      <remap from="joint_states" to="/$(arg namespace)/joint_states" />
+    </node>
+  </group>
+-->
 
 </launch>

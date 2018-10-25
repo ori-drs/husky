@@ -1,4 +1,4 @@
 <launch>
 <!-- this doesn't work during log playback -->
-<node pkg="tf" type="static_transform_publisher" name="base_head_broadcaster" args="0.465 0 0 0.0 0 0.0 multisense/head multisense/left_camera_frame 100" />
+<node pkg="tf" type="static_transform_publisher" name="base_head_broadcaster" args="0.465 0 0.558 0.0 0.5411 0.0 multisense/head base_link 100" />
 </launch>
