@@ -1,0 +1,9 @@
+<launch>
+    <group ns="sick_horizontal">
+  <arg name="host" default="192.168.0.84" />
+  <node pkg="lms1xx" name="lms1xx" type="LMS1xx_node">
+    <param name="host" value="$(arg host)" />
+    <param name="frame_id" value="sick_horizontal"/>
+  </node>
+    </group>
+</launch>

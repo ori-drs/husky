@@ -1,0 +1,25 @@
+<launch>
+
+
+	<!-- MultiSense ??? -->
+	<node pkg="tf" type="static_transform_publisher" name="multisense_frame_publisher" output="screen"  
+		args="0.4 0 0.339 0 0.38 -0.03 /base_link /multisense/head 100" />
+
+	<!-- Realsense tf -->
+	<node pkg="tf" type="static_transform_publisher" name="realsense_frame_publisher" output="screen"  
+		args="0.485 0 0.339 3.1416 0 0 /base_link /camera/infra1/image_rect_raw 100" />
+
+	<!-- Velodyne 16 tf -->
+	<node pkg="tf" type="static_transform_publisher" name="velodyne_frame_publisher" output="screen"  
+		args="0.188 0 0.69 0 0 0 /base_link /velodyne 100" />
+
+	<!-- Sick Lidar front -->
+	<node pkg="tf" type="static_transform_publisher" name="front_sick_lidar_frame_publisher" output="screen"  
+		args="0.525 0 0.10 3.1416 3.1416 0.0 /base_link /sick_horizontal 100" />
+
+	<!-- Sick Lidar rear -->
+	<node pkg="tf" type="static_transform_publisher" name="rear_sick_lidar_frame_publisher" output="screen"  
+		args="-0.57 0 0.15 0 1.5708 3.1416 /base_link /sick_vertical 100" />
+
+
+</launch>    
