@@ -139,7 +139,7 @@ Visualization Manager:
       Shaft Length: 1
       Shaft Radius: 0.0500000007
       Shape: Axes
-      Topic: /path_follower/current_goal
+      Topic: /position_controller/current_goal
       Unreliable: false
       Value: true
     - Alpha: 1
