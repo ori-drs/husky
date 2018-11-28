@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+
+  <!-- lower png_level from realsense camera, so that png compression can be real time. -->
+  <!-- default (1) can only be published at 5Hz. range of png_level is 1-9 -->
+
+  <!-- MULTISENSE compression -->
+  <!-- MS - Left disparity/depth -->
+  <node pkg="dynamic_reconfigure" type="dynparam" name="dynparam_ms" output="screen"
+    args="set /multisense/left/disparity/compressedDepth png_level 1" >
+  </node>
+
+  <!-- MS - Left camera -->
+  <param name="/multisense/left/image_color/compressed/jpeg_quality" value="95" />
+
+  <!-- MS - Right camera -->
+  <param name="/multisense/right/image_mono/compressed/jpeg_quality" value="95" />
+
+
+  <node pkg="dynamic_reconfigure" type="dynparam" name="dynparam_ms_fps" output="screen"
+    args="set /multisense fps 15.0" >
+  </node>
+  <node pkg="dynamic_reconfigure" type="dynparam" name="dynparam_ms_motor" output="screen"
+    args="set /multisense motor_speed 3.0" >
+  </node>
+
+
+  <!--Note: recording location consistent with the ORI Anymal wiki page:
+      https://wiki.oxfordrobots.com/display/DRS/Anymal-->
+  <node name="rosbag" pkg="rosbag" type="record"
+    args="-o $(env HOME)/logs/raw/husky.bag
+
+    /camera/color/camera_info
+    /camera/color/image_raw/compressed
+    /camera/aligned_depth_to_color/camera_info
+    /camera/aligned_depth_to_color/image_raw/compressedDepth
+
+    /camera/infra1/image_rect_raw
+    /camera/infra1/image_rect_raw/compressed
+    /camera/infra1/camera_info    
+    /camera/infra2/image_rect_raw
+    /camera/infra2/image_rect_raw/compressed
+    /camera/infra2/camera_info
+    
+
+    /multisense/imu/imu_data
+    /multisense/joint_states
+
+    /multisense/lidar_scan
+    
+    /multisense/left/image_color/compressed
+    /multisense/left/image_color/camera_info
+    /multisense/right/image_mono/compressed
+    /multisense/right/image_mono/camera_info
+
+    /multisense/left/disparity/compressedDepth
+    /multisense/left/disparity/camera_info
+
+
+    /velodyne_points
+    /sick_horizontal/scan
+    /sick_vertical/scan
+
+
+    /tf
+    /tf_static
+    /joint_states
+
+    " output="screen">
+  </node>
+
+</launch>
