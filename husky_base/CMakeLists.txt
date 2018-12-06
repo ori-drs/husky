@@ -43,7 +43,7 @@ roslint_cpp(
   include/husky_base/husky_hardware.h
 )
 
-roslaunch_add_file_check(launch)
+#roslaunch_add_file_check(launch)
 
 install(TARGETS horizon_legacy husky_node
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
